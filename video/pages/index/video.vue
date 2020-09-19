@@ -1,8 +1,7 @@
 <template>
-	    <div class="test_box">
+	    <div id="app">
 			<div class="test_one_box">
 	        <video
-	        id="video_1"
 			controls: true
 			muted: true
 			height="600px"
@@ -12,7 +11,6 @@
 	        >
 	        </video>
 			<video
-			id="video_2"
 			controls: true
 			muted: true
 			height="600px"
@@ -24,7 +22,6 @@
 			</div>
 			<div class="test_two_box">
 			<video
-			id="video_3"
 			controls: true
 			muted: true
 			height="600px"
@@ -34,7 +31,6 @@
 			>
 			</video>
 			<video
-			id="video_4"
 			controls: true
 			muted: true
 			height="600px"
@@ -48,16 +44,25 @@
 </template>
 
 <script>
+	console.log("加载视频模块")
 	/* eslint-disable */
 	export default {
 	name: "TestTwo",
 	data() {
 	    return {};
 	},
-	mounted() { 
-	    /* this.initVideo(); */
+	computed: {
+		/* this.initVideo(); */
+	    username() {
+	      // 我们很快就会看到 `params` 是什么
+		  console.log("当前路由地址"+this.$route.getCurrentLocation())
+	      return this.$route.params.username
+	    }
 	},
 	methods: {
+	    goBack() {
+	      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+	    }
 	    /* initVideo() {
 	    //初始化视频方法
 	    let myPlayer = this.$video(myVideo, {
@@ -78,7 +83,7 @@
 </script>
 
 <style>
-	.test_box {
+	#app {
 		margin-left: 200rpx;
 		margin-top: 50rpx;
 	}
